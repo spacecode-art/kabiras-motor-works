@@ -1,0 +1,93 @@
+{
+  "pages": {
+    "home": [
+      {
+        "component": "Hero",
+        "usage": "Main hero section background image",
+        "url": "https://automotivedoctor.co.ke/wp-content/uploads/2025/02/Automotive_Doctor_Motor_Garage_Limited_Garage_in_Nairobi_Kenya_04-1.webp"
+      }
+    ],
+    "about": [
+      {
+        "component": "AboutPage",
+        "usage": "Header background image",
+        "url": "https://images-na.ssl-images-amazon.com/images/I/71Pxd-dpvTL._UL500_.jpg"
+      },
+      {
+        "component": "AboutPage",
+        "usage": "'Our Story' section image",
+        "url": "https://i2.wp.com/www.carsrus.co.ke/wp-content/uploads/2019/11/PRE-PURCHASE-CAR-INSPECTION.jpg?fit=750%2C498&ssl=1"
+      }
+    ],
+    "services": [
+      {
+        "component": "ServicesPage",
+        "usage": "Header background image",
+        "url": "https://media.istockphoto.com/id/1347150429/photo/professional-mechanic-working-on-the-engine-of-the-car-in-the-garage.jpg?s=612x612&w=0&k=20&c=5zlDGgLNNaWsp_jq_L1AsGT85wrzpdl3kVH-75S-zTU="
+      }
+    ],
+    "bodywork": [
+      {
+        "component": "BodyworkPage",
+        "usage": "Header background image",
+        "url": "https://images.pexels.com/photos/3354648/pexels-photo-3354648.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      },
+       {
+        "component": "BodyworkPage",
+        "usage": "Restoration process section image",
+        "url": "https://images.pexels.com/photos/5835364/pexels-photo-5835364.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      }
+    ],
+    "blog": [
+      {
+        "component": "BlogPage",
+        "usage": "Header background image",
+        "url": "https://automotivedoctor.co.ke/wp-content/uploads/2025/01/5532.jpg"
+      }
+    ],
+    "contact": [
+      {
+        "component": "ContactPage",
+        "usage": "Header background image",
+        "url": "https://images.pexels.com/photos/21014/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      },
+      {
+        "component": "Contact",
+        "usage": "Map placeholder image",
+        "url": "https://images.pexels.com/photos/3573351/pexels-photo-3573351.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      }
+    ]
+  },
+  "components": {
+    "fallback": {
+      "blogPost": "https://automotivedoctor.co.ke/wp-content/uploads/2025/01/5532.jpg"
+    },
+    "about": [
+      {
+        "component": "About",
+        "usage": "Image of mechanics in the workshop",
+        "url": "https://i2.wp.com/www.carsrus.co.ke/wp-content/uploads/2019/11/PRE-PURCHASE-CAR-INSPECTION.jpg?fit=750%2C498&ssl=1"
+      }
+    ],
+    "serviceModals": [
+      { "service": "Engine Diagnostics", "url": "https://images.pexels.com/photos/4489764/pexels-photo-4489764.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
+      { "service": "Transmission & Gearbox", "url": "https://images.pexels.com/photos/6871810/pexels-photo-6871810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
+      { "service": "Brake System Repairs", "url": "https://images.pexels.com/photos/6871783/pexels-photo-6871783.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
+      { "service": "Electrical & Wiring", "url": "https://images.pexels.com/photos/8249419/pexels-photo-8249419.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
+      { "service": "Suspension & Steering", "url": "https://images.pexels.com/photos/6462662/pexels-photo-6462662.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
+      { "service": "Fleet Management", "url": "https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
+      { "service": "Bodywork & Refinishing (Featured)", "url": "https://images.pexels.com/photos/3354648/pexels-photo-3354648.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" }
+    ],
+    "bodyworkGallery": [
+      { "title": "Collision Repair", "before": "https://nationalautocollisioncenters.com/wp-content/uploads/2019/05/pontiac-vibe-auto-body-repair-before.jpg", "after": "https://nationalautocollisioncenters.com/wp-content/uploads/2019/05/pontiac-vibe-auto-body-repair-after.jpg" },
+      { "title": "Spray Painting / Full Respray", "before": "https://www.hipposautospa.co.ke/blog/wp-content/uploads/2022/12/honda-fit-before-after-combo-1536x1536.jpg", "after": "https://www.hipposautospa.co.ke/blog/wp-content/uploads/2022/12/honda-fit-before-after-combo-1536x1536.jpg" },
+      { "title": "Panel Beating & Alignment", "before": "https://maxellauto.co.za/wp-content/uploads/2022/09/before-after-2.jpg", "after": "https://maxellauto.co.za/wp-content/uploads/2022/09/before-after-2.jpg" },
+      { "title": "Scratch & Dent Removal", "before": "https://mauimobiledentandscratch.com/uploads/1/0/9/0/109027145/maui-mobile-auto-body-repair-dent.jpg", "after": "https://mauimobiledentandscratch.com/uploads/1/0/9/0/109027145/maui-mobile-auto-body-repair-dent.jpg" }
+    ],
+    "blogPosts": [
+        { "title": "5 Signs Your Vehicle Needs a Full Diagnostics Check", "url": "https://www.admiraltire.com/Files/Images/Blog/AdobeStock_302319529.jpeg" },
+        { "title": "Why Regular Suspension & Alignment Checks Save You Money", "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe9HVCCVI0TmB4kFlNbu66AiDCbQYex2h61g&s" },
+        { "title": "How Spray-Painting After a Collision Restores Value & Safety", "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh3cM5bwuKPKakcEWVU39BACpxlzl6j12YXg&s" }
+    ]
+  }
+}
