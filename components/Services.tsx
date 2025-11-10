@@ -128,7 +128,7 @@ const Services: React.FC<ServicesProps> = ({ imageData }) => {
             {servicesData.map((service, index) => (
                 <div 
                     key={index} 
-                    className="bg-brand-light-gray p-8 rounded-lg shadow-md text-center transition-transform transform hover:-translate-y-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2"
+                    className="bg-brand-light-gray p-8 rounded-lg shadow-md text-center transition-all duration-300 transform hover:-translate-y-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2 hover:shadow-xl hover:shadow-brand-orange/20"
                     onClick={() => setSelectedService(service)}
                     role="button"
                     tabIndex={0}

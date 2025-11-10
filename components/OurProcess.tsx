@@ -37,7 +37,11 @@ const OurProcess: React.FC = () => {
            <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 hidden lg:block" aria-hidden="true"></div>
            <div className="absolute top-1/2 left-0 w-full h-0.5 border-t-2 border-dashed border-gray-300 hidden lg:block" aria-hidden="true"></div>
           {steps.map((step, index) => (
-            <div key={index} className="bg-white p-6 rounded-lg shadow-lg text-center border-t-4 border-brand-orange relative z-10">
+            <div 
+              key={index} 
+              className="bg-white p-6 rounded-lg shadow-lg text-center border-t-4 border-brand-orange relative z-10 opacity-0 animate-fade-in-up"
+              style={{ animationDelay: `${index * 0.15}s` }}
+            >
               <div className="flex justify-center items-center mb-4 text-brand-navy relative">
                  <div className="bg-brand-orange text-white rounded-full h-16 w-16 flex items-center justify-center -mt-14 border-4 border-white">
                     {step.icon}

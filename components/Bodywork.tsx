@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 interface BodyworkProps {
   imageData: any;
 }
 
 const Bodywork: React.FC<BodyworkProps> = ({ imageData }) => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   if (!imageData) return null;
   
   const bodyworkImages = imageData.components.bodyworkGallery.slice(0, 2);
@@ -41,26 +39,30 @@ const Bodywork: React.FC<BodyworkProps> = ({ imageData }) => {
               <div 
                 key={index}
                 className="relative rounded-lg shadow-2xl overflow-hidden cursor-pointer group focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2 focus:ring-offset-brand-navy"
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                onFocus={() => setHoveredIndex(index)}
-                onBlur={() => setHoveredIndex(null)}
                 tabIndex={0}
                 aria-label={`View before and after for ${item.title}`}
               >
                 <img 
-                  src={hoveredIndex === index ? item.after : item.before} 
-                  alt={item.title} 
+                  src={item.before}
+                  alt={`Before - ${item.title}`} 
                   className="w-full h-64 object-cover transition-transform duration-500 transform group-hover:scale-110" 
                   loading="lazy"
                   decoding="async"
                 />
+                <div 
+                  style={{ backgroundImage: `url(${item.after})` }}
+                  className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform group-hover:scale-110"
+                  aria-hidden="true"
+                ></div>
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300"></div>
                 <div className="absolute top-4 left-4 bg-brand-navy/80 text-white px-3 py-1 rounded-full text-sm font-bold">
                   {item.title}
                 </div>
-                <div className="absolute bottom-4 right-4 bg-brand-orange/80 text-white px-3 py-1 rounded-full text-sm font-bold">
-                  {hoveredIndex === index ? 'After' : 'Before'}
+                <div className="absolute bottom-4 right-4 bg-brand-orange/80 text-white px-3 py-1 rounded-full text-sm font-bold transition-opacity duration-300 opacity-100 group-hover:opacity-0">
+                  Before
+                </div>
+                <div className="absolute bottom-4 right-4 bg-brand-orange/80 text-white px-3 py-1 rounded-full text-sm font-bold transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+                  After
                 </div>
               </div>
             ))}

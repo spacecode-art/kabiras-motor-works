@@ -7,14 +7,12 @@ interface BodyworkPageProps {
 }
 
 const BodyworkPage: React.FC<BodyworkPageProps> = ({ onBookServiceClick, imageData }) => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  
   if (!imageData) return null;
   
   const bodyworkImages = imageData.components.bodyworkGallery;
 
   return (
-    <div className="animate-fade-in-up">
+    <div>
       {/* Page Header */}
       <section className="relative h-64 bg-cover bg-center text-white flex items-center justify-center" style={{ backgroundImage: `url('${imageData.pages.bodywork[0].url}')` }}>
         <div className="absolute inset-0 bg-black/60"></div>
@@ -29,30 +27,34 @@ const BodyworkPage: React.FC<BodyworkPageProps> = ({ onBookServiceClick, imageDa
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-navy">Before & After Gallery</h2>
-                <p className="text-lg mt-2 max-w-2xl mx-auto text-brand-charcoal">Hover over an image to see the transformation.</p>
+                <p className="text-lg mt-2 max-w-2xl mx-auto text-brand-charcoal">Hover over or tap an image to see the transformation.</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {bodyworkImages.map((item, index) => (
                 <div 
                     key={index}
                     className="relative rounded-lg shadow-2xl overflow-hidden cursor-pointer group h-80 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2"
-                    onMouseEnter={() => setHoveredIndex(index)}
-                    onMouseLeave={() => setHoveredIndex(null)}
-                    onFocus={() => setHoveredIndex(index)}
-                    onBlur={() => setHoveredIndex(null)}
                     tabIndex={0}
                     aria-label={`View before and after for ${item.title}`}
                 >
                     <img 
-                    src={hoveredIndex === index ? item.after : item.before} 
-                    alt={item.title} 
-                    className="w-full h-full object-cover transition-all duration-500 transform group-hover:scale-110"
-                    loading="lazy"
-                    decoding="async" 
+                        src={item.before} 
+                        alt={`Before - ${item.title}`} 
+                        className="w-full h-full object-cover transition-transform duration-500 transform group-hover:scale-110"
+                        loading="lazy"
+                        decoding="async" 
                     />
+                    <div 
+                        style={{ backgroundImage: `url(${item.after})` }}
+                        className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform group-hover:scale-110"
+                        aria-hidden="true"
+                    ></div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent transition-all duration-300"></div>
-                    <div className="absolute top-4 left-4 bg-brand-navy/80 text-white px-3 py-1 rounded-full text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                      {hoveredIndex === index ? 'After' : 'Before'}
+                    <div className="absolute top-4 left-4 bg-brand-navy/80 text-white px-3 py-1 rounded-full text-sm font-bold transition-opacity duration-300 opacity-100 group-hover:opacity-0">
+                        Before
+                    </div>
+                    <div className="absolute top-4 left-4 bg-brand-navy/80 text-white px-3 py-1 rounded-full text-sm font-bold transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+                        After
                     </div>
                     <h3 className="absolute bottom-4 left-4 text-white text-xl font-bold font-heading">{item.title}</h3>
                 </div>
@@ -103,16 +105,6 @@ const BodyworkPage: React.FC<BodyworkPageProps> = ({ onBookServiceClick, imageDa
       </section>
 
       <Testimonials limit={2} />
-
-      <style>{`
-        @keyframes fade-in-up {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-up {
-          animation: fade-in-up 0.5s ease-out forwards;
-        }
-      `}</style>
     </div>
   );
 };

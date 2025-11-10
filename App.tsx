@@ -79,7 +79,7 @@ const App: React.FC = () => {
   return (
     <div className="bg-white text-brand-charcoal font-sans">
       <Header onBookServiceClick={openBookingModal} onNavigate={navigate} currentPage={currentPage} />
-      <main>
+      <main key={currentPage} className="opacity-0 animate-fade-in-up">
         {renderPage()}
       </main>
       <Footer onNavigate={navigate} />

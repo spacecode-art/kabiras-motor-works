@@ -10,7 +10,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBookServiceClick, imageData }) 
   if (!imageData) return null;
 
   return (
-    <div className="animate-fade-in-up">
+    <div>
       {/* Page Header */}
       <section className="relative h-64 bg-cover bg-center text-white flex items-center justify-center" style={{ backgroundImage: `url('${imageData.pages.about[0].url}')` }}>
         <div className="absolute inset-0 bg-black/60"></div>
@@ -73,16 +73,6 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBookServiceClick, imageData }) 
       </section>
       
       <Testimonials />
-
-      <style>{`
-        @keyframes fade-in-up {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-up {
-          animation: fade-in-up 0.5s ease-out forwards;
-        }
-      `}</style>
     </div>
   );
 };

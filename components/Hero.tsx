@@ -10,20 +10,32 @@ const Hero: React.FC<HeroProps> = ({ onBookServiceClick, imageData }) => {
 
   return (
     <section 
-      className="relative h-[80vh] min-h-[500px] bg-cover bg-center text-white flex items-center justify-center"
-      style={{ backgroundImage: `url('${imageData.pages.home[0].url}')` }}
+      className="relative h-[80vh] min-h-[500px] text-white flex items-center justify-center overflow-hidden"
     >
+      <div 
+        className="absolute inset-0 bg-cover bg-center animate-kenburns"
+        style={{ backgroundImage: `url('${imageData.pages.home[0].url}')` }}
+      ></div>
       <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/80 to-black/30"></div>
       <div className="relative z-10 text-center p-4">
-        <h1 className="text-4xl md:text-6xl font-heading font-black mb-4 tracking-tight leading-tight">
+        <h1 
+          className="text-4xl sm:text-5xl md:text-6xl font-heading font-black mb-4 tracking-tight leading-tight opacity-0 animate-fade-in-up" 
+          style={{ animationDelay: '0.2s' }}
+        >
           Reliable Engineering. Expert Mechanics.
           <br />
-          <span className="text-3xl md:text-5xl font-heading font-bold text-gray-200">Keeping Kenya Moving.</span>
+          <span className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-gray-200">Keeping Kenya Moving.</span>
         </h1>
-        <p className="text-lg md:text-xl font-sans font-semibold text-gray-100 mb-8 max-w-3xl mx-auto">
+        <p 
+          className="text-lg md:text-xl font-sans font-semibold text-gray-100 mb-8 max-w-3xl mx-auto opacity-0 animate-fade-in-up"
+          style={{ animationDelay: '0.4s' }}
+        >
             KABIRA’S Motor Vehicle Engineering & Mechanics – Karatina & Eldoret.
         </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
+        <div 
+          className="flex flex-col sm:flex-row justify-center gap-4 opacity-0 animate-fade-in-up"
+          style={{ animationDelay: '0.6s' }}
+        >
           <button
             onClick={onBookServiceClick}
             className="bg-brand-orange text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-opacity-90 transition duration-300 transform hover:scale-105 shadow-xl"

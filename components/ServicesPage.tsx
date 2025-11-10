@@ -28,7 +28,7 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ imageData, onBookServiceCli
   if (!imageData) return null;
 
   return (
-    <div className="animate-fade-in-up">
+    <div>
       {/* Page Header */}
       <section className="relative h-64 bg-cover bg-center text-white flex items-center justify-center" style={{ backgroundImage: `url('${imageData.pages.services[0].url}')` }}>
         <div className="absolute inset-0 bg-black/60"></div>
@@ -44,16 +44,6 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ imageData, onBookServiceCli
       <FleetServices />
 
       <CallToAction onBookServiceClick={onBookServiceClick} />
-      
-      <style>{`
-        @keyframes fade-in-up {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-up {
-          animation: fade-in-up 0.5s ease-out forwards;
-        }
-      `}</style>
     </div>
   );
 };

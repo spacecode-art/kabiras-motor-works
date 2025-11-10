@@ -47,7 +47,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ limit }) => {
   return (
     <section className="py-20 bg-brand-navy text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 opacity-0 animate-fade-in-up">
           <h2 className="text-3xl md:text-4xl font-heading font-bold">What Our Customers Say</h2>
           <p className="text-lg mt-2 max-w-2xl mx-auto text-gray-300">
             Our 4.7 ⭐ rating speaks for itself.
@@ -55,7 +55,11 @@ const Testimonials: React.FC<TestimonialsProps> = ({ limit }) => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {displayedTestimonials.map((testimonial, index) => (
-            <div key={index} className="bg-brand-charcoal/50 p-8 rounded-lg shadow-lg flex flex-col">
+            <div 
+              key={index} 
+              className="bg-brand-charcoal/50 p-8 rounded-lg shadow-lg flex flex-col opacity-0 animate-fade-in-up"
+              style={{ animationDelay: `${index * 0.15}s` }}
+            >
               <StarRating rating={testimonial.rating} />
               <p className="text-gray-200 mt-4 flex-grow">"{testimonial.quote}"</p>
               <div className="mt-6">

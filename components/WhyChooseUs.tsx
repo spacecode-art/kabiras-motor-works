@@ -37,7 +37,11 @@ const WhyChooseUs: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {reasons.map((reason, index) => (
-            <div key={index} className="text-center p-6">
+            <div 
+              key={index} 
+              className="text-center p-6 opacity-0 animate-fade-in-up" 
+              style={{ animationDelay: `${index * 0.15}s` }}
+            >
               <div className="flex justify-center items-center mb-4 text-brand-orange">
                 {reason.icon}
               </div>

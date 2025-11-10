@@ -84,7 +84,7 @@ const FeaturedServices: React.FC<FeaturedServicesProps> = ({ onBookServiceClick,
             {featuredServicesData.map((service, index) => (
                 <div 
                     key={index} 
-                    className="bg-brand-charcoal/50 p-8 rounded-lg text-center transition-transform transform hover:-translate-y-2 cursor-pointer"
+                    className="bg-brand-charcoal/50 p-8 rounded-lg text-center transition-all duration-300 transform hover:-translate-y-2 cursor-pointer hover:shadow-xl hover:shadow-brand-orange/20"
                     onClick={() => setSelectedService(service)}
                 >
                 <div className="flex justify-center items-center mb-4 text-brand-orange">
