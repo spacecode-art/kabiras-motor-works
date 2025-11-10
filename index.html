@@ -5,24 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KABIRA’S Motor Vehicle Engineering & Mechanics | Reliable Auto Repair in Karatina & Eldoret, Kenya</title>
     <meta name="description" content="Expert vehicle repair, engineering, and spray-painting services by KABIRA’S Motor Vehicle Engineering & Mechanics. Call +254 788 487 711 for reliable service in Karatina & Eldoret." />
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>html { scroll-behavior: smooth; }</style>
-<script type="importmap">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'brand-navy': '#1A202C',
+              'brand-charcoal': '#2D3748',
+              'brand-grey': '#718096',
+              'brand-light-gray': '#EDF2F7',
+              'brand-orange': '#DD6B20',
+            },
+            fontFamily: {
+              'sans': ['Open Sans', 'sans-serif'],
+              'heading': ['Montserrat', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
 {
   "imports": {
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "vite": "https://aistudiocdn.com/vite@^7.2.2",
-    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.0"
+    "react": "https://aistudiocdn.com/react@^19.2.0"
   }
 }
 </script>
 </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
+    <!-- Netlify hidden forms for AJAX submission -->
+    <form name="contact-page" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="tel" name="phone" />
+      <input type="text" name="vehicle" />
+      <select name="service"></select>
+      <textarea name="message"></textarea>
+    </form>
+    <form name="booking-modal" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="tel" name="phone" />
+      <input type="text" name="vehicle" />
+      <select name="service"></select>
+      <input type="date" name="date" />
+    </form>
   </body>
 </html>

@@ -31,6 +31,8 @@ const About: React.FC<AboutProps> = ({ imageData }) => {
               src={imageData.components.about[0].url}
               alt="The team of expert mechanics at KABIRA'S workshop" 
               className="rounded-lg shadow-2xl w-full h-auto object-cover"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>

@@ -22,7 +22,7 @@ const BlogPostModal: React.FC<BlogPostModalProps> = ({ post, onClose }) => {
         </button>
         
         <div>
-            <img src={post.image} alt={post.title} className="w-full h-72 object-cover rounded-t-lg" />
+            <img src={post.image} alt={post.title} className="w-full h-72 object-cover rounded-t-lg" loading="lazy" decoding="async" />
             <div className="p-8 md:p-10">
                 <p className="text-brand-orange font-bold text-sm mb-2">{post.category}</p>
                 <h2 className="text-3xl md:text-4xl font-bold font-heading text-brand-navy mb-4">{post.title}</h2>

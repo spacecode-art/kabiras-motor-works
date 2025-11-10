@@ -89,7 +89,7 @@ const Contact: React.FC<ContactProps> = ({ imageData }) => {
               <p className="flex items-center text-lg text-brand-charcoal"><strong className="w-24">Hours:</strong> <span>Open daily until 12:00 AM</span></p>
             </div>
             <a href="https://www.google.com/maps/search/?api=1&query=Karatina,Kenya" target="_blank" rel="noopener noreferrer" className="block rounded-lg shadow-lg overflow-hidden group">
-                <img src={imageData.pages.contact[1].url} alt="A scenic road in Kenya, representing the location" className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"/>
+                <img src={imageData.pages.contact[1].url} alt="A scenic road in Kenya, representing the location" className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" decoding="async"/>
             </a>
           </div>
         </div>

@@ -128,8 +128,12 @@ const Services: React.FC<ServicesProps> = ({ imageData }) => {
             {servicesData.map((service, index) => (
                 <div 
                     key={index} 
-                    className="bg-brand-light-gray p-8 rounded-lg shadow-md text-center transition-transform transform hover:-translate-y-2 cursor-pointer"
+                    className="bg-brand-light-gray p-8 rounded-lg shadow-md text-center transition-transform transform hover:-translate-y-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2"
                     onClick={() => setSelectedService(service)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setSelectedService(service); }}
+                    aria-label={`Learn more about ${service.title}`}
                 >
                 <div className="flex justify-center items-center mb-4 text-brand-orange">
                     {service.icon}

@@ -6,16 +6,41 @@ interface ContactPageProps {
 }
 
 const ContactPage: React.FC<ContactPageProps> = ({ imageData }) => {
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    vehicle: '',
+    service: '',
+    message: '',
+  });
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
   if (!imageData) return null;
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const encode = (data: { [key: string]: string }) => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&");
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
-    // Fake delay for demonstration
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setStatus('success');
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "contact-page", ...formData })
+    })
+      .then(() => setStatus('success'))
+      .catch(error => {
+          setStatus('error');
+          console.error(error);
+      });
   };
 
   return (
@@ -45,21 +70,23 @@ const ContactPage: React.FC<ContactPageProps> = ({ imageData }) => {
              ) : (
                 <>
                 <h3 className="text-2xl font-bold font-heading text-brand-navy mb-6">Schedule Your Service</h3>
-                <form onSubmit={handleSubmit}>
+                 {status === 'error' && <p className="mb-4 text-red-600 bg-red-100 p-3 rounded-md">Something went wrong. Please try again or call us directly.</p>}
+                <form name="contact-page" data-netlify="true" onSubmit={handleSubmit}>
+                    <input type="hidden" name="form-name" value="contact-page" />
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div className="relative">
                             <label htmlFor="name" className="sr-only">Full Name</label>
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                <svg className="w-5 h-5 text-brand-grey" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                             </div>
-                            <input type="text" id="name" name="name" placeholder="Full Name" className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent transition" required />
+                            <input type="text" id="name" name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent transition" required />
                         </div>
                         <div className="relative">
                             <label htmlFor="phone" className="sr-only">Phone</label>
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <svg className="w-5 h-5 text-brand-grey" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                             </div>
-                            <input type="tel" id="phone" name="phone" placeholder="Phone Number" className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent transition" required />
+                            <input type="tel" id="phone" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent transition" required />
                         </div>
                     </div>
                     <div className="mb-4 relative">
@@ -67,11 +94,11 @@ const ContactPage: React.FC<ContactPageProps> = ({ imageData }) => {
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <svg className="w-5 h-5 text-brand-grey" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                         </div>
-                        <input type="text" id="vehicle" name="vehicle" placeholder="e.g. Toyota Hilux" className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent transition" required />
+                        <input type="text" id="vehicle" name="vehicle" placeholder="e.g. Toyota Hilux" value={formData.vehicle} onChange={handleChange} className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent transition" required />
                     </div>
                     <div className="mb-4">
                         <label htmlFor="service" className="sr-only">Service Required</label>
-                        <select id="service" name="service" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent transition" required>
+                        <select id="service" name="service" value={formData.service} onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent transition" required>
                             <option value="">-- Select Service --</option>
                             <option>General Service Inquiry</option>
                             <option>Engine Diagnostics</option>
@@ -85,7 +112,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ imageData }) => {
                     </div>
                      <div className="mb-6">
                         <label htmlFor="message" className="sr-only">Message</label>
-                        <textarea id="message" name="message" rows={4} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent transition" placeholder="Provide any additional details..."></textarea>
+                        <textarea id="message" name="message" rows={4} value={formData.message} onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent transition" placeholder="Provide any additional details..."></textarea>
                     </div>
                     <button 
                         type="submit"

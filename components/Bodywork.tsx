@@ -40,14 +40,20 @@ const Bodywork: React.FC<BodyworkProps> = ({ imageData }) => {
             {bodyworkImages.map((item, index) => (
               <div 
                 key={index}
-                className="relative rounded-lg shadow-2xl overflow-hidden cursor-pointer group"
+                className="relative rounded-lg shadow-2xl overflow-hidden cursor-pointer group focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2 focus:ring-offset-brand-navy"
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
+                onFocus={() => setHoveredIndex(index)}
+                onBlur={() => setHoveredIndex(null)}
+                tabIndex={0}
+                aria-label={`View before and after for ${item.title}`}
               >
                 <img 
                   src={hoveredIndex === index ? item.after : item.before} 
                   alt={item.title} 
                   className="w-full h-64 object-cover transition-transform duration-500 transform group-hover:scale-110" 
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300"></div>
                 <div className="absolute top-4 left-4 bg-brand-navy/80 text-white px-3 py-1 rounded-full text-sm font-bold">

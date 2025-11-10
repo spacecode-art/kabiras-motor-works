@@ -29,6 +29,8 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBookServiceClick, imageData }) 
                     src={imageData.pages.about[1].url} 
                     alt="The KABIRA'S team working together in the workshop" 
                     className="rounded-lg shadow-2xl w-full h-auto object-cover"
+                    loading="lazy"
+                    decoding="async"
                     />
                 </div>
                 <div className="text-center md:text-left">

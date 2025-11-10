@@ -27,7 +27,7 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({ service, onClos
         </button>
         
         <div>
-            <img src={service.details.image} alt={service.title} className="w-full h-64 object-cover rounded-t-lg" />
+            <img src={service.details.image} alt={service.title} className="w-full h-64 object-cover rounded-t-lg" loading="lazy" decoding="async" />
             <div className="p-8">
                 <div className="flex items-center mb-4">
                     <span className="text-brand-orange mr-4">{React.cloneElement(service.icon, {className: "h-10 w-10"})}</span>

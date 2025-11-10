@@ -74,7 +74,7 @@ const Blog: React.FC<BlogProps> = ({ onNavigate, imageData }) => {
         {postsData.map((post, index) => (
             <div key={index} className="bg-brand-light-gray rounded-lg shadow-lg overflow-hidden group">
             <div className="overflow-hidden">
-                <img src={post.image} alt={post.title} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" />
+                <img src={post.image} alt={post.title} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" decoding="async" />
             </div>
             <div className="p-6 flex flex-col">
                 <p className="text-brand-orange font-bold text-sm mb-2">{post.category}</p>
