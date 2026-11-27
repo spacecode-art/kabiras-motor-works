@@ -20,7 +20,6 @@ The platform presents workshop services, bodywork capabilities, company informat
 - [Available Scripts](#available-scripts)
 - [Content and Configuration](#content-and-configuration)
 - [Netlify Deployment](#netlify-deployment)
-- [Known Project Considerations](#known-project-considerations)
 - [Recommended Repository Name](#recommended-repository-name)
 - [License](#license)
 
@@ -250,14 +249,6 @@ After deployment:
 - Submit a test request for each form.
 - Review submissions in the Netlify Forms dashboard.
 
-## Known Project Considerations
-
-- Page navigation is state-based rather than URL-route based.
-- `images.json` must be present and reachable for the application to render.
-- Form fields rely on Netlify Forms and require deployment to Netlify for submission handling.
-- The repository does not currently include automated tests or CI configuration.
-- No license file is currently present. Add a license before redistributing or clearly permitting reuse.
-
 ## Recommended Repository Name
 
 **`kabiras-auto-workshop-website`** is the recommended name because it clearly identifies the business and project purpose.
@@ -272,4 +263,4 @@ Renaming the repository is optional. After renaming, update repository URLs, dep
 
 ## License
 
-No license file is currently included. Add an appropriate `LICENSE` file before publishing the project as open source or granting explicit reuse rights.
+This project is licensed under the [MIT License](LICENSE).
