@@ -1,149 +1,275 @@
-<div align="center">
+# KABIRA'S Motor Vehicle Engineering & Mechanics
 
-# KABIRA’S Motor Vehicle Engineering & Mechanics
+![TypeScript](https://img.shields.io/badge/TypeScript-97.4%25-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=20232A)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Netlify](https://img.shields.io/badge/Netlify-Deployed-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
 
-**A responsive business website for an automotive repair and vehicle engineering workshop in Kenya.**
+A responsive, client-side business website for **KABIRA'S Motor Vehicle Engineering & Mechanics**, an automotive service workshop serving Karatina and Eldoret, Kenya.
 
-[Services](#services) · [Getting Started](#getting-started) · [Architecture](#architecture) · [Deployment](#deployment)
+The platform presents workshop services, bodywork capabilities, company information, automotive articles, contact details, and service booking options.
 
-</div>
+## Table of Contents
 
----
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [Technology Stack](#technology-stack)
+- [Architecture](#architecture)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Available Scripts](#available-scripts)
+- [Content and Configuration](#content-and-configuration)
+- [Netlify Deployment](#netlify-deployment)
+- [Known Project Considerations](#known-project-considerations)
+- [Recommended Repository Name](#recommended-repository-name)
+- [License](#license)
 
 ## Overview
 
-This repository contains the source for the KABIRA’S workshop website. It presents the business, its automotive services, bodywork capabilities, articles, and contact information, and lets visitors submit contact and appointment requests.
+KABIRA'S provides a focused digital experience for customers seeking vehicle repair and engineering services. Visitors can explore available services, learn about workshop processes, read automotive articles, and submit contact or appointment requests.
 
-The site is a client-rendered React application. Page content is composed from reusable components, while page and component imagery is configured in `images.json`. Contact and booking forms are configured for Netlify Forms. There is no application API or database in this repository.
+The application is a lightweight React single-page application without a dedicated backend. Business content is maintained through React components and `images.json`, while form submissions are handled by Netlify Forms.
 
-## Features
+## Key Features
 
-- Home, About, Services, Bodywork, Blog, and Contact pages
-- Reusable React components for navigation, page sections, modals, and shared layout
-- Service appointment and contact request forms
-- Image configuration loaded from `images.json`
-- Responsive styling with Tailwind CSS
-- Netlify deployment configuration and form handling
+- Responsive navigation for desktop and mobile devices
+- Dedicated Home, About, Services, Bodywork, Blog, and Contact views
+- Service details presented through reusable cards and modals
+- Booking modal with vehicle, service, date, and contact fields
+- Contact form with Netlify Forms submission handling
+- Runtime image configuration through `images.json`
+- Responsive layout and branded typography using Tailwind CSS
+- FAQ, testimonial, process, and call-to-action sections
+- Google Maps integration on the contact page
+- Netlify redirects for client-side application routes
 
 ## Technology Stack
 
 | Area | Technology |
 | --- | --- |
-| UI | React 19, TypeScript |
-| Development server | Vite |
-| Styling | Tailwind CSS, PostCSS, Autoprefixer |
-| Hosting and forms | Netlify configuration and Netlify Forms |
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js (an active LTS release is recommended)
-- npm
-
-### Install and run locally
-
-```bash
-npm install
-npm run dev
-```
-
-Vite serves the development site at <http://localhost:3000>.
-
-### Build styles
-
-The Tailwind CSS input is `input.css`; the generated stylesheet is `output.css` and is linked by `index.html`.
-
-```bash
-# Generate CSS for development
-npm run build
-
-# Generate minified CSS
-npm run build:prod
-
-# Rebuild CSS automatically when source styles change
-npm run watch
-```
-
-> `npm run build` generates the stylesheet; it is not a Vite production-bundle command.
-
-## Project Structure
-
-```text
-.
-├── App.tsx                 # Application state, page selection, and shared layout
-├── index.tsx               # React application entry point
-├── index.html              # HTML shell and Netlify form declarations
-├── components/             # Pages and reusable UI components
-├── images.json             # Image URLs grouped by page and component
-├── input.css               # Tailwind CSS input
-├── output.css              # Generated stylesheet used by the site
-├── package.json            # Scripts and development dependencies
-├── tailwind.config.js      # Tailwind configuration
-├── vite.config.ts           # Vite development configuration
-└── netlify.toml             # Netlify build, publish, and redirect settings
-```
+| UI library | React 19 |
+| Language | TypeScript 5.9 |
+| Build and development server | Vite 7 |
+| Styling | Tailwind CSS 3.4, PostCSS, Autoprefixer |
+| Forms | Netlify Forms |
+| Hosting | Netlify |
+| Maps | Google Maps Embed |
 
 ## Architecture
 
 ```mermaid
 flowchart TD
-    Visitor[Visitor's browser] --> HTML[index.html]
+    Visitor[Visitor] --> Browser[Web Browser]
+    Browser --> HTML[index.html]
     HTML --> Entry[index.tsx]
     Entry --> App[App.tsx]
 
-    App --> Layout[Shared Header and Footer]
-    App --> Pages[Page components]
-    App --> Booking[Booking modal]
-    App -->|fetches on startup| Images[images.json]
+    App --> Header[Header]
+    App --> Router[Page Selection State]
+    App --> Footer[Footer]
+    App --> Modal[Booking Modal]
 
-    Pages --> Sections[Reusable page sections and UI components]
-    Images --> Pages
-    Images --> Sections
+    Router --> Home[Home Page]
+    Router --> About[About Page]
+    Router --> Services[Services Page]
+    Router --> Bodywork[Bodywork Page]
+    Router --> Blog[Blog Page]
+    Router --> Contact[Contact Page]
 
-    Styles[input.css] -->|Tailwind CSS build| Generated[output.css]
-    Generated --> HTML
+    App -->|Fetch at startup| Images[images.json]
+    Images --> Pages[Page Components]
+    Pages --> Sections[Reusable Sections and Modals]
 
-    Pages -->|Contact form submission| Netlify[Netlify Forms]
-    Booking -->|Appointment submission| Netlify
+    CSS[input.css] -->|Tailwind Build| Output[output.css]
+    Output --> HTML
 
-    subgraph Hosting[Development and hosting]
-      Vite[Vite development server]
-      NetlifyDeploy[Netlify static-site deployment]
+    Contact -->|URL-encoded submission| Netlify[Netlify Forms]
+    Modal -->|URL-encoded submission| Netlify
+
+    subgraph Local Development
+        Vite[Vite Development Server]
+        Vite -->|Port 3000| Browser
     end
-    Vite -. serves during development .-> HTML
-    NetlifyDeploy -. publishes configured site files .-> HTML
+
+    subgraph Production
+        NetlifyDeploy[Netlify Static Deployment]
+        NetlifyDeploy -->|Publish repository root| Browser
+    end
 ```
 
-### Request and rendering flow
+### Rendering Flow
 
-1. `index.html` loads the React entry point, which mounts `App.tsx`.
-2. The app loads image configuration from `images.json` and renders the selected page using components in `components/`.
-3. Tailwind processes `input.css` into the `output.css` stylesheet used by the site.
-4. Contact and booking form submissions are posted to Netlify Forms when the site is deployed on Netlify.
+1. `index.html` provides the application shell and hidden Netlify form definitions.
+2. `index.tsx` mounts the React application into the `#root` element.
+3. `App.tsx` manages the selected page, navigation state, loading state, image configuration, and booking modal.
+4. Page components receive data from `images.json` and render reusable UI sections.
+5. Tailwind CSS processes `input.css` into `output.css`, which is loaded by `index.html`.
+6. Contact and booking submissions are posted to Netlify Forms in production.
 
-## Deployment
+## Project Structure
 
-The repository includes `netlify.toml`. Its current configuration runs `npm run build:prod`, publishes the repository root (`.`), and redirects requests to `index.html` for the client-rendered site.
+```text
+.
+├── App.tsx                 # Application state and page composition
+├── index.tsx               # React application entry point
+├── index.html              # HTML shell and Netlify form definitions
+├── components/
+│   ├── Header.tsx          # Navigation and mobile menu
+│   ├── Footer.tsx          # Shared footer
+│   ├── HomePage.tsx        # Home page composition
+│   ├── AboutPage.tsx       # About page
+│   ├── ServicesPage.tsx    # Services listing
+│   ├── BodyworkPage.tsx    # Bodywork and refinishing page
+│   ├── BlogPage.tsx        # Blog and article interface
+│   ├── ContactPage.tsx     # Contact information and booking form
+│   └── BookingModal.tsx    # Appointment request modal
+├── images.json             # Page and component image configuration
+├── input.css               # Tailwind source stylesheet
+├── output.css              # Generated application stylesheet
+├── tailwind.config.js      # Tailwind theme and content configuration
+├── postcss.config.js       # PostCSS configuration
+├── vite.config.ts          # Vite server and React configuration
+├── netlify.toml            # Build, publish, and redirect configuration
+├── package.json            # Dependencies and project scripts
+└── tsconfig.json           # TypeScript configuration
+```
 
-To deploy with Netlify:
+## Getting Started
 
-1. Import the repository into Netlify.
-2. Use the build command and publish directory defined in `netlify.toml` (`npm run build:prod` and `.`).
-3. Confirm that Netlify detects the `contact-page` and `booking-modal` forms after deployment, then submit a test request for each form.
+### Prerequisites
 
-## Configuration and Content
+- Node.js 20 or newer
+- npm
 
-- Update page and component image URLs in `images.json`. The site fetches this file at runtime, so the deployed file must remain available at the site root.
-- Update business copy and page content in the relevant files under `components/`.
-- Update the Tailwind theme and content paths in `tailwind.config.js` as needed.
+### Installation
 
-## Suggested Repository Name
+```bash
+# Clone the repository
+git clone https://github.com/Denniskaninu/gigs-offer.git
 
-**`kabiras-auto-workshop`** is a clearer, more professional name than `gigs-offer` and matches the actual project and business. Other options include `kabiras-motors-website` and `kabiras-automotive`.
+# Move into the project directory
+cd gigs-offer
 
-> Renaming the repository is optional and separate from this README update. If you rename it, update any external deployment settings or links that refer to the current repository URL.
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+```
+
+The local application is available at:
+
+```text
+http://localhost:3000
+```
+
+### Preview a Production Build
+
+```bash
+npm run preview
+```
+
+## Available Scripts
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Starts the Vite development server on port 3000 |
+| `npm run build` | Generates the Tailwind stylesheet |
+| `npm run build:prod` | Generates the minified production stylesheet |
+| `npm run watch` | Watches source files and rebuilds the Tailwind stylesheet |
+| `npm run preview` | Starts the Vite preview server |
+
+> `npm run build` and `npm run build:prod` compile Tailwind CSS. They do not create a Vite JavaScript bundle. The site is published directly from the repository root.
+
+## Content and Configuration
+
+### Update Images
+
+Update page and component image URLs in `images.json`. The application fetches this file at runtime, so it must remain available at the deployed site root.
+
+### Update Business Content
+
+Business copy and page layouts are maintained in files under `components/`. Common update points include:
+
+- `components/Services.tsx`
+- `components/ServicesPage.tsx`
+- `components/BodyworkPage.tsx`
+- `components/ContactPage.tsx`
+- `components/Blog.tsx`
+- `components/Faq.tsx`
+
+### Update Branding
+
+Tailwind brand colors and typography are configured in `tailwind.config.js`:
+
+- Brand navy: `#1A202C`
+- Brand charcoal: `#2D3748`
+- Brand grey: `#718096`
+- Brand light grey: `#EDF2F7`
+- Brand orange: `#DD6B20`
+
+Google Fonts provide Montserrat for headings and Open Sans for body text.
+
+### Environment Variables
+
+The Vite configuration defines `GEMINI_API_KEY` if environment loading is required:
+
+```bash
+GEMINI_API_KEY=your_api_key
+```
+
+No Gemini integration is currently used by the visible application flow. Avoid committing real secrets to this repository.
+
+## Netlify Deployment
+
+The repository includes a complete `netlify.toml` configuration:
+
+```toml
+[build]
+command = "npm run build:prod"
+publish = "."
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+```
+
+### Deploy
+
+1. Push the project to GitHub.
+2. Create or open a Netlify project.
+3. Import the repository.
+4. Confirm the build command is `npm run build:prod`.
+5. Confirm the publish directory is `.`.
+6. Deploy the site.
+
+After deployment:
+
+- Confirm that Netlify detects the `contact-page` and `booking-modal` forms.
+- Submit a test request for each form.
+- Review submissions in the Netlify Forms dashboard.
+
+## Known Project Considerations
+
+- Page navigation is state-based rather than URL-route based.
+- `images.json` must be present and reachable for the application to render.
+- Form fields rely on Netlify Forms and require deployment to Netlify for submission handling.
+- The repository does not currently include automated tests or CI configuration.
+- No license file is currently present. Add a license before redistributing or clearly permitting reuse.
+
+## Recommended Repository Name
+
+**`kabiras-auto-workshop-website`** is the recommended name because it clearly identifies the business and project purpose.
+
+Alternative names:
+
+- `kabiras-motors-website`
+- `kabiras-auto-engineering`
+- `kabiras-motor-services`
+
+Renaming the repository is optional. After renaming, update repository URLs, deployment integrations, and clone instructions.
 
 ## License
 
-No license file is currently included. Add a `LICENSE` file before presenting this project as open source or granting reuse rights.
+No license file is currently included. Add an appropriate `LICENSE` file before publishing the project as open source or granting explicit reuse rights.
